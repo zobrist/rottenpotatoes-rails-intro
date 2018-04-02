@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.ratings
-    @selected = session[:selected]
+    @selected = session[:selected] || ["G", "PG", "PG-13", "R"]
     @sort_by = params[:sort_by] || session[:sort_by]
     @title_header_class = ''
     @date_header_class = ''
