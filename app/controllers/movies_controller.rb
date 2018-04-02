@@ -19,6 +19,11 @@ class MoviesController < ApplicationController
 
     get_movies_by_rating
 
+    if params[:sort_by] == nil && params[:ratings] == nil
+        redirect_to movies_path(:sort_by => session[:sort_by], :ratings => Hash[session[:selected].collect {|item| [item, 1] } ])
+        flash.keep
+    end
+
     if @sort_by == 'title'
       @title_header_class = 'hilite'
       @sort_title = session[:sort_title] || true
